@@ -21,7 +21,9 @@ export class ConnectionPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ConnectionPage');
   }
-
+  connect(){
+  	console.log("test")
+  }
   fermeture() {
  	this.viewCtrl.dismiss();
 	}
