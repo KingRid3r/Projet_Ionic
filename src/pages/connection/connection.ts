@@ -4,6 +4,7 @@ import { Http } from '@angular/http';
 import { ViewController } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 import { ToastController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 /**
  * Generated class for the ConnectionPage page.
@@ -20,8 +21,12 @@ import { ToastController } from 'ionic-angular';
 export class ConnectionPage {
   connexion = {
         identifiant: '',
-        mdp: ''};
-  constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams, public http: Http, private toastCtrl: ToastController) {
+        mdp: '',
+        souvenir: false};
+  constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams, public http: Http, private toastCtrl: ToastController, private storage: Storage) {
+    this.storage.get('identifiant').then((val) => {
+      console.log('Votre identifiant est ', val);
+    });
   }
 
   ionViewDidLoad() {
@@ -58,7 +63,11 @@ export class ConnectionPage {
           console.log('Dismissed toast');
         });
         toast.present();
-        this.fermeture();
+        if(form.value.souvenir == true){
+          this.storage.set('identifiant', form.value.identifiant);
+          this.storage.set('mdp', form.value.mdp);
+        }
+        this.fermeture(form.value.identifiant, form.value.mdp);
       }else{
         console.log("Erreur indéfinie (peut être n'êtes vous pas connecté a internet)");
         let toast = this.toastCtrl.create({
@@ -74,8 +83,12 @@ export class ConnectionPage {
 
     });
 }
-  fermeture() {
- 	this.viewCtrl.dismiss();
+  fermeture(_identifiant, _mdp) {
+  this.viewCtrl.dismiss({
+    identifiant: _identifiant,
+    mdp: _mdp,
+    connected: true
+  });
 	}
 
 

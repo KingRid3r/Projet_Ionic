@@ -21,11 +21,17 @@
 <ion-content padding>
   <form #form="ngForm" (ngSubmit)="connect(form)" novalidate>
 	   <ion-item>
-    	   <ion-input type="text" [(ngModel)]="connexion.identifiant" name="identifiant" placeholder="Identifiant"></ion-input>
+        <ion-label floating>Identifiant</ion-label>
+    	  <ion-input type="text" [(ngModel)]="connexion.identifiant" name="identifiant"></ion-input>
  	   </ion-item>
  	   <ion-item>
-    	   <ion-input type="password" [(ngModel)]="connexion.mdp" name="mdp" placeholder="Mot de passe"></ion-input>
+        <ion-label floating>Mot de passe</ion-label>
+    	  <ion-input type="password" [(ngModel)]="connexion.mdp" name="mdp"></ion-input>
   	 </ion-item>
+     <ion-item>
+       <ion-label>Se souvenir de moi</ion-label>
+       <ion-toggle [(ngModel)]="connexion.souvenir" name="souvenir"></ion-toggle>
+     </ion-item>
   		      <button ion-button type="submit" block>Connexion</button>
   </form>
 </ion-content>

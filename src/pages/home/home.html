@@ -8,11 +8,21 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Bienvenue dans l'application petit prince</h3>
+  <ion-refresher (ionRefresh)="rafraichir($event)">
+    <ion-refresher-content>
+    </ion-refresher-content>
+  </ion-refresher>
+  <div *ngIf="connected == false">
+    <h3>Bienvenue dans l'application petit prince</h3>
 
-  <p>
-    Merci de bien vouloir vous connecter afin de pouvoir utilisé l'application
-  </p>
+    <p>
+      Merci de bien vouloir vous connecter afin de pouvoir utilisé l'application
+    </p>
 
-  <button ion-button (click)=connection() >Connexion</button>
+    <button ion-button (click)=connection() >Connexion</button>
+  </div>
+
+  <div *ngIf="connected == true">
+    <h3>Bonjour, {{ identifiant }}</h3>
+  </div>
 </ion-content>
