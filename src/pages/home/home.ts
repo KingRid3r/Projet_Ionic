@@ -50,6 +50,21 @@ export class HomePage {
     });
   }
 
+  deconnection(){
+    this.identifiant = null;
+    this.mdp = null;
+    this.connected = false;
+    storage.get('identifiant').then((val) => {
+      console.log('Votre identifiant est ', val);
+      if(val != null){
+        this.storage.set('identifiant', null);
+        this.storage.set('mdp', null);
+      }
+    });
+
+
+  }
+
   rafraichir(refresher){
     refresher.complete();
   }

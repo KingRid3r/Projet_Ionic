@@ -24,5 +24,6 @@
 
   <div *ngIf="connected == true">
     <h3>Bonjour, {{ identifiant }}</h3>
+    <button ion-button (click)=deconnection() >Deconnexion</button>
   </div>
 </ion-content>
