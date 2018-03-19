@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Http } from '@angular/http';
 import { ViewController } from 'ionic-angular';
 import 'rxjs/add/operator/map';
-import { Http } from '@angular/http';
+import { ToastController } from 'ionic-angular';
+
 /**
  * Generated class for the ConnectionPage page.
  *
@@ -16,22 +18,60 @@ import { Http } from '@angular/http';
   templateUrl: 'connection.html',
 })
 export class ConnectionPage {
-	rep: any;
-  constructor(public http: Http, public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams) {
-
+  connexion = {};
+  constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams, public http: Http, private toastCtrl: ToastController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ConnectionPage');
   }
   connect(){
-  	console.log("test")
-  	this.http.get('http://www.sebastien-thon.fr/cours/M4104Cip/projet/index.php?connexion&login=classe1&mdp=mdp1')
- 		.map(res => res.json())
- 		.subscribe(data => {
-	this.rep = data;
-	});
-  }
+    console.log(this.connexion);
+    console.log("connexion");
+    this.http.get('http://www.sebastien-thon.fr/cours/M4104Cip/projet/index.php?connexion&login='+this.connexion.identifiant+'&mdp='+this.connexion.mdp)
+        .map(res => res.json())
+        .subscribe(data => {
+    console.log(data);
+      if(data.erreur){
+        console.log(data.erreur);
+
+        let toast = this.toastCtrl.create({
+          message: data.erreur,
+          duration: 3000,
+          position: 'bottom'
+        });
+        toast.onDidDismiss(() => {
+          console.log('Dismissed toast');
+        });
+        toast.present();
+
+      }else if(data.resultat){
+        console.log(data.resultat);
+        let toast = this.toastCtrl.create({
+          message: data.resultat,
+          duration: 3000,
+          position: 'bottom'
+        });
+        toast.onDidDismiss(() => {
+          console.log('Dismissed toast');
+        });
+        toast.present();
+        this.fermeture();
+      }else{
+        console.log("Erreur indéfinie (peut être n'êtes vous pas connecté a internet)");
+        let toast = this.toastCtrl.create({
+          message: "Erreur indéfinie (peut être n'êtes vous pas connecté a internet)",
+          duration: 3000,
+          position: 'bottom'
+        });
+        toast.onDidDismiss(() => {
+          console.log('Dismissed toast');
+        });
+        toast.present();
+      }
+
+    });
+}
   fermeture() {
  	this.viewCtrl.dismiss();
 	}
