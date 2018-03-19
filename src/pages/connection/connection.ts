@@ -18,17 +18,19 @@ import { ToastController } from 'ionic-angular';
   templateUrl: 'connection.html',
 })
 export class ConnectionPage {
-  connexion = {};
+  connexion = {
+        identifiant: '',
+        mdp: ''};
   constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams, public http: Http, private toastCtrl: ToastController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ConnectionPage');
   }
-  connect(){
-    console.log(this.connexion);
+  connect(form){
+    console.log(form.value);
     console.log("connexion");
-    this.http.get('http://www.sebastien-thon.fr/cours/M4104Cip/projet/index.php?connexion&login='+this.connexion.identifiant+'&mdp='+this.connexion.mdp)
+    this.http.get('http://www.sebastien-thon.fr/cours/M4104Cip/projet/index.php?connexion&login='+form.value.identifiant+'&mdp='+form.value.mdp)
         .map(res => res.json())
         .subscribe(data => {
     console.log(data);

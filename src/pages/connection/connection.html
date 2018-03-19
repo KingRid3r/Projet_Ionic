@@ -19,7 +19,7 @@
 
 
 <ion-content padding>
-  <form (ngSubmit)="connect()">
+  <form #form="ngForm" (ngSubmit)="connect(form)" novalidate>
 	   <ion-item>
     	   <ion-input type="text" [(ngModel)]="connexion.identifiant" name="identifiant" placeholder="Identifiant"></ion-input>
  	   </ion-item>
