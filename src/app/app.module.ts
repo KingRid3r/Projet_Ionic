@@ -11,6 +11,7 @@ import { DatesPage } from '../pages/dates/dates';
 import { InfosPage } from '../pages/infos/infos';
 import { GaleriesPage } from '../pages/galeries/galeries';
 import { ConnectionPage } from '../pages/connection/connection';
+import { connexionVar } from '../providers/connexionVar';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -45,6 +46,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
+    connexionVar,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
