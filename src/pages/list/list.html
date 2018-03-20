@@ -8,16 +8,31 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon [name]="item.icon" item-start></ion-icon>
-      {{item.title}}
-      <div class="item-note" item-end>
-        {{item.note}}
+  <ion-refresher (ionRefresh)="rafraichir($event)">
+    <ion-refresher-content>
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <div *ngIf="ConnexionVar.getConnectionVar().connected == true">
+    <ion-card *ngFor="let art of articles">
+      <div *ngIf="art.classe == 0 || art.classe == classe">
+        <ion-card-header>
+          <div *ngIf="art.important == true"><ion-icon name="alert"></ion-icon></div>
+          <h2>{{art.titre}}</h2>
+          <h4>{{art.categorie}} - {{art.date}}</h4>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-img class="center" src="http://www.sebastien-thon.fr/cours/M4104Cip/projet/images/IMG_001.JPG"></ion-img>
+          <h4 class="center">{{art.photos.legende}}</h4>
+        <br/>
+          <p>{{art.texte}}</p>
+        </ion-card-content>
       </div>
-    </button>
-  </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
+    </ion-card>
   </div>
+
+  <div *ngIf="ConnexionVar.getConnectionVar().connected == False">
+    <p>Veuiller vous connecter pour Accéder a cette page</p>
+  </div>
+
 </ion-content>

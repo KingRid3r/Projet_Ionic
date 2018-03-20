@@ -30,7 +30,7 @@ export class MyApp {
       { title: 'Informations de contact', component: InfosPage }
     ];
 
-    }
+    
   }
 
   initializeApp() {
