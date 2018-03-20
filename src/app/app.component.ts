@@ -9,7 +9,6 @@ import { DatesPage } from '../pages/dates/dates';
 import { InfosPage } from '../pages/infos/infos';
 import { GaleriesPage } from '../pages/galeries/galeries';
 import { ConnectionPage } from '../pages/connection/connection';
-
 @Component({
   templateUrl: 'app.html'
 })
@@ -23,7 +22,6 @@ export class MyApp {
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
-    
     this.pages = [
       { title: 'Accueil', component: HomePage },
       { title: 'Articles', component: ListPage },
@@ -32,6 +30,7 @@ export class MyApp {
       { title: 'Informations de contact', component: InfosPage }
     ];
 
+    }
   }
 
   initializeApp() {

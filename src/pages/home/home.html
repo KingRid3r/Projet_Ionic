@@ -12,7 +12,7 @@
     <ion-refresher-content>
     </ion-refresher-content>
   </ion-refresher>
-  <div *ngIf="connected == false">
+  <div *ngIf="ConnexionVar.getConnectionVar().connected == false">
     <h3>Bienvenue dans l'application petit prince</h3>
 
     <p>
@@ -22,8 +22,8 @@
     <button ion-button (click)=connection() >Connexion</button>
   </div>
 
-  <div *ngIf="connected == true">
-    <h3>Bonjour, {{ identifiant }}</h3>
+  <div *ngIf="ConnexionVar.getConnectionVar().connected == true">
+    <h3>Bonjour, {{ ConnexionVar.getConnectionVar().identifiant }}</h3>
     <button ion-button (click)=deconnection() >Deconnexion</button>
   </div>
 </ion-content>

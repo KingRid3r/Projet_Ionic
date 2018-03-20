@@ -2,7 +2,9 @@ import {Injectable} from '@angular/core';
 
 @Injectable()
 export class connexionVar {
-
+  identifiant;
+  mdp;
+  connected;
   constructor() {
     this.identifiant = null;
     this.mdp = null;
@@ -16,14 +18,14 @@ export class connexionVar {
     this.identifiant = _identifiant;
   }
   setConnexionVarConnected(_connected){
-    this._connected = _connected;
+    this.connected = _connected;
   }
   getConnectionVar() {
-    ConnectVar: [
-      this.identifiant,
-      this.mdp,
-      this._connected
-    ];
+    var ConnectVar = {
+      identifiant: this.identifiant,
+      mdp: this.mdp,
+      connected: this.connected
+    };
     return ConnectVar;
   }
 

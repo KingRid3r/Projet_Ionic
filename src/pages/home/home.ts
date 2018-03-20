@@ -13,7 +13,7 @@ import { connexionVar } from '../../providers/connexionVar';
 export class HomePage {
 
   connected = false;
-  constructor(private ConnexionVar: connexionVar, public viewCtrl: ViewController, public navCtrl: NavController, public modalCtrl: ModalController, private storage: Storage) {
+  constructor(public ConnexionVar: connexionVar, public viewCtrl: ViewController, public navCtrl: NavController, public modalCtrl: ModalController, private storage: Storage) {
     storage.get('identifiant').then((val) => {
       console.log('Votre identifiant est ', val);
       if(val != null){
@@ -32,7 +32,7 @@ export class HomePage {
         //this.rafraichir();
       }
     });
-
+    console.log(ConnexionVar.getConnectionVar());
   }
 
   connection(){
@@ -47,7 +47,7 @@ export class HomePage {
         //this.mdp = modalData.mdp;
         this.ConnexionVar.setConnexionVarMdp(modalData.mdp);
         //this.connected = modalData.connected;
-        this.ConnectVar.setConnexionVarConnected(modalData.connected);
+        this.ConnexionVar.setConnexionVarConnected(modalData.connected);
       }else{
         //this.identifiant = null;
         this.ConnexionVar.setConnexionVarId(null);
@@ -63,9 +63,9 @@ export class HomePage {
     //this.identifiant = null;
     //this.mdp = null;
     //this.connected = false;
-    this.ConnectVar.setConnexionVarId(null);
-    this.ConnectVar.setConnexionVarMdp(null);
-    this.ConnectVar.setConnexionVarConnected(false);
+    this.ConnexionVar.setConnexionVarId(null);
+    this.ConnexionVar.setConnexionVarMdp(null);
+    this.ConnexionVar.setConnexionVarConnected(false);
     this.storage.get('identifiant').then((val) => {
       console.log('Votre identifiant est ', val);
       if(val != null){
@@ -78,6 +78,7 @@ export class HomePage {
   }
 
   rafraichir(refresher){
+    console.log(this.ConnexionVar.getConnectionVar());
     refresher.complete();
   }
 
