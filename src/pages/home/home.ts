@@ -78,7 +78,6 @@ export class HomePage {
   }
 
   rafraichir(refresher){
-    console.log(this.ConnexionVar.getConnectionVar());
     refresher.complete();
   }
 

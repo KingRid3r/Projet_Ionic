@@ -59,7 +59,7 @@ export class ListPage {
         console.log(data.erreur);
 
         let toast = this.toastCtrl.create({
-          message: data.erreur,
+          message: "Vous n'êtes pas connecté",
           duration: 3000,
           position: 'bottom'
         });
