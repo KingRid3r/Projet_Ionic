@@ -17,14 +17,20 @@
 
 
 <ion-content padding>
-  <ion-slides class="image-slider" loop="true" slidesPerView="2">
-    <ion-slide *ngFor="let gal of galeries">
-      <img src="http://www.sebastien-thon.fr/cours/M4104Cip/projet/images/{{gal}}" class="thumb-img" imageViewer/>
-    </ion-slide>
-  </ion-slides>
-  <ion-slides class="image-slider" loop="true" slidesPerView="2">
-    <ion-slide *ngFor="let gal of galeries">
-      <img src="http://www.sebastien-thon.fr/cours/M4104Cip/projet/images/{{gal}}" class="thumb-img" imageViewer/>
-    </ion-slide>
-  </ion-slides>
+
+  <div *ngFor="let class of galeries">
+    <div *ngIf="class.classe == 0 || class.classe == classe">
+      <h4>{{class.titre}}</h4>
+      <h6>{{class.date}}</h6>
+      <p>{{class.texte}} </p>
+      <ion-slides classe="image-slider" loop="true" slidesPerView="2">
+        <ion-slide *ngFor="let gal of class.photos">
+
+          <img src="http://www.sebastien-thon.fr/cours/M4104Cip/projet/images/{{gal.image}}" class="thumb-img" imageViewer/>
+          <p class="image-text">{{gal.legende}}</p>
+        </ion-slide>
+      </ion-slides>
+    </div>
+  </div>
+
 </ion-content>

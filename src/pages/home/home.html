@@ -19,11 +19,12 @@
       Merci de bien vouloir vous connecter afin de pouvoir utilisé l'application
     </p>
 
-    <button ion-button (click)=connection() >Connexion</button>
+    <button class="button" ion-button (click)=connection() >Connexion</button>
   </div>
 
   <div *ngIf="ConnexionVar.getConnectionVar().connected == true">
-    <h3>Bonjour, {{ ConnexionVar.getConnectionVar().identifiant }}</h3>
-    <button ion-button (click)=deconnection() >Deconnexion</button>
+    <h3>Bonjour,<br/></h3>
+     <p>vous êtes connecté sur le compte : {{ ConnexionVar.getConnectionVar().identifiant }}</p>
+    <button class="button deco" ion-button (click)=deconnection() >Deconnexion</button>
   </div>
 </ion-content>

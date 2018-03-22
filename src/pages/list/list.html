@@ -17,8 +17,11 @@
     <ion-card *ngFor="let art of articles">
       <div *ngIf="art.classe == 0 || art.classe == classe">
         <ion-card-header>
-          <div *ngIf="art.important == true"><ion-icon name="alert"></ion-icon></div>
-          <h2>{{art.titre}}</h2>
+          <ion-item>
+            <ion-icon *ngIf="art.important == true" item-left name="alert"></ion-icon>
+            <h2 *ngIf="art.important == true" item-right>{{art.titre}}</h2>
+            <h2 *ngIf="art.important == false">{{art.titre}}</h2>
+          </ion-item>
           <h4>{{art.categorie}} - {{art.date}}</h4>
         </ion-card-header>
         <ion-card-content>
@@ -34,7 +37,7 @@
   </div>
 
   <div *ngIf="ConnexionVar.getConnectionVar().connected == false">
-      <img class="center" src='https://cdn.pixabay.com/photo/2014/09/28/10/36/road-sign-464643_1280.png' alt="NOT_CONNECTED"/>
+      <img class="center" src='../../assets/imgs/not_co.png' alt="NOT_CONNECTED"/>
       <h1>Veuiller vous connecter pour Accéder a cette page</h1>
   </div>
 
