@@ -17,5 +17,17 @@
 
 
 <ion-content padding>
-
+    <ion-card *ngFor="let dat of dates">
+      <ion-card-header>
+        <ion-item class="but">
+          <h2>{{dat.titre}}</h2>
+          <button clear class="plusbut but" item-right ion-button icon-start>
+            <ion-icon class="plusbut" name="add-circle"></ion-icon>
+          </button>
+        </ion-item>
+      </ion-card-header>
+      <ion-card-content>
+        <!-- Add card content here! -->
+      </ion-card-content>
+    </ion-card>
 </ion-content>

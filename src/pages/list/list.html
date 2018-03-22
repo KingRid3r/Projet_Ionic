@@ -19,7 +19,7 @@
         <ion-card-header>
           <ion-item>
             <ion-icon *ngIf="art.important == true" item-left name="alert"></ion-icon>
-            <h2 *ngIf="art.important == true" item-right>{{art.titre}}</h2>
+            <h2 *ngIf="art.important == true" item-left>{{art.titre}}</h2>
             <h2 *ngIf="art.important == false">{{art.titre}}</h2>
           </ion-item>
           <h4>{{art.categorie}} - {{art.date}}</h4>
@@ -31,6 +31,10 @@
           </div>
         <br/>
           <p>{{art.texte}}</p>
+          <ion-item>
+            <ion-label class="noSpace" item-left>Favori</ion-label>
+            <ion-toggle class="noSpace" [(ngModel)]="art.favori" item-left></ion-toggle>
+          </ion-item>
         </ion-card-content>
       </div>
     </ion-card>
