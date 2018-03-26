@@ -4,6 +4,7 @@ import { connexionVar } from '../../providers/connexionVar';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { ToastController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 @Component({
   selector: 'page-list',
   templateUrl: 'list.html'
@@ -11,7 +12,9 @@ import { ToastController } from 'ionic-angular';
 export class ListPage {
   articles: any;
   classe: any;
-  constructor(private toastCtrl: ToastController, public http: Http, public ConnexionVar: connexionVar, public navCtrl: NavController, public navParams: NavParams) {
+  items: any;
+  Fav:any;
+  constructor(private toastCtrl: ToastController, public http: Http, public ConnexionVar: connexionVar, public navCtrl: NavController, public navParams: NavParams, private storage: Storage) {
     if(ConnexionVar.getConnectionVar().connected == true){
       this.http.get('http://www.sebastien-thon.fr/cours/M4104Cip/projet/index.php?login='+ConnexionVar.getConnectionVar().identifiant+'&mdp='+ConnexionVar.getConnectionVar().mdp)
           .map(res => res.json())
@@ -32,6 +35,7 @@ export class ListPage {
         }else if(data.articles){
           console.log(data.articles);
           this.articles = data.articles;
+          this.items = this.articles;
         }else{
           console.log("Erreur indéfinie (peut être n'êtes vous pas connecté a internet)");
           let toast = this.toastCtrl.create({
@@ -71,6 +75,7 @@ export class ListPage {
       }else if(data.articles){
         console.log(data.articles);
         this.articles = data.articles;
+        this.items = this.articles;
       }else{
         console.log("Erreur indéfinie (peut être n'êtes vous pas connecté a internet)");
         let toast = this.toastCtrl.create({
@@ -85,5 +90,39 @@ export class ListPage {
       }
     });
     refresher.complete();
+  }
+  initialize(){
+    this.items = this.articles;
+  }
+
+  getArts(ev: any) {
+    // Reset items back to all of the items
+    this.initialize();
+
+    // set val to the value of the searchbar
+    let val = ev.target.value;
+
+    // if the value is an empty string don't filter the items
+    if (val && val.trim() != '') {
+      this.items = this.items.filter((item) => {
+        return (item.titre.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
+    }
+    console.log(this.items);
+  }
+
+  addFav(idArt, checked){
+    if(checked){
+      console.log(this.articles);
+      console.log(idArt);
+      console.log(checked);
+      var Fav = this.storage.get('Fav')
+      Fav[idArt] = checked;
+      console.log(Fav);
+      this.storage.set('Fav', Fav);
+      console.log(this.storage.get('Fav'));
+    }else{
+
+    }
   }
 }

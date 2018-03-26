@@ -4,6 +4,11 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Articles</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="openModal()">
+        <p>Sauvegarder</p>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -14,7 +19,8 @@
   </ion-refresher>
 
   <div *ngIf="ConnexionVar.getConnectionVar().connected == true">
-    <ion-card *ngFor="let art of articles">
+    <ion-searchbar (ionInput)="getArts($event)"></ion-searchbar>
+    <ion-card *ngFor="let art of items">
       <div *ngIf="art.classe == 0 || art.classe == classe">
         <ion-card-header>
           <ion-item>
@@ -33,7 +39,7 @@
           <p>{{art.texte}}</p>
           <ion-item>
             <ion-label class="noSpace" item-left>Favori</ion-label>
-            <ion-toggle class="noSpace" [(ngModel)]="art.favori" item-left></ion-toggle>
+            <ion-toggle class="noSpace" [(ngModel)]="art.fav" (ionChange)="addFav(art.id, art.fav)" item-left></ion-toggle>
           </ion-item>
         </ion-card-content>
       </div>
