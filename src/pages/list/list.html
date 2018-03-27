@@ -39,7 +39,7 @@
           <p>{{art.texte}}</p>
           <ion-item>
             <ion-label class="noSpace" item-left>Favori</ion-label>
-            <ion-toggle class="noSpace" [(ngModel)]="art.fav" (ionChange)="addFav(art.id, art.fav)" item-left></ion-toggle>
+            <ion-toggle class="noSpace" [(ngModel)]="this.Fav[art.id]" (ionChange)="addFav(art.id, this.Fav[art.id])" item-left></ion-toggle>
           </ion-item>
         </ion-card-content>
       </div>

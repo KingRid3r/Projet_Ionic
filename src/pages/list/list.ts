@@ -13,9 +13,17 @@ export class ListPage {
   articles: any;
   classe: any;
   items: any;
-  Fav:any;
+  Fav: any;
   constructor(private toastCtrl: ToastController, public http: Http, public ConnexionVar: connexionVar, public navCtrl: NavController, public navParams: NavParams, private storage: Storage) {
     if(ConnexionVar.getConnectionVar().connected == true){
+      this.storage.get('Fav').then((val) => {
+        if(val){
+          this.Fav = JSON.parse(val);
+          console.log(this.Fav)
+        }else{
+          this.Fav = new Object();
+        }
+      });
       this.http.get('http://www.sebastien-thon.fr/cours/M4104Cip/projet/index.php?login='+ConnexionVar.getConnectionVar().identifiant+'&mdp='+ConnexionVar.getConnectionVar().mdp)
           .map(res => res.json())
           .subscribe(data => {
@@ -112,17 +120,22 @@ export class ListPage {
   }
 
   addFav(idArt, checked){
-    if(checked){
-      console.log(this.articles);
       console.log(idArt);
-      console.log(checked);
-      var Fav = this.storage.get('Fav')
-      Fav[idArt] = checked;
-      console.log(Fav);
-      this.storage.set('Fav', Fav);
-      console.log(this.storage.get('Fav'));
-    }else{
 
-    }
+      this.storage.get('Fav').then((val) => {
+        if(val){
+          this.Fav = JSON.parse(val);
+          this.Fav[idArt] = checked;
+          console.log(this.Fav);
+          this.storage.set('Fav', JSON.stringify(this.Fav));
+        }else{
+          console.log("pas de stockage")
+          this.Fav = new Object();
+          this.Fav[idArt] = checked;
+          console.log(this.Fav);
+          this.storage.set('Fav', JSON.stringify(this.Fav));
+        }
+      });
+
   }
 }
