@@ -16,6 +16,7 @@ import { connexionVar } from '../providers/connexionVar';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Calendar } from '@ionic-native/calendar';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     StatusBar,
     SplashScreen,
     connexionVar,
+    Calendar,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

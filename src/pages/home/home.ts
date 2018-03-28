@@ -250,9 +250,10 @@ export class HomePage {
         this.Fav[idArt] = false;
         console.log(this.Fav);
         this.storage.set('Fav', JSON.stringify(this.Fav));
+        location.reload();
       }
     });
-    location.reload();
+
   }
 
 }
