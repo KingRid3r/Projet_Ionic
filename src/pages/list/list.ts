@@ -43,6 +43,9 @@ export class ListPage {
         }else if(data.articles){
           console.log(data.articles);
           this.articles = data.articles;
+          for(var i in this.articles){
+            this.articles[i].gdate = new Date(this.articles[i].date);
+          }
           this.items = this.articles;
         }else{
           console.log("Erreur indéfinie (peut être n'êtes vous pas connecté a internet)");
@@ -83,6 +86,9 @@ export class ListPage {
       }else if(data.articles){
         console.log(data.articles);
         this.articles = data.articles;
+        for(var i in this.articles){
+          this.articles[i].gdate = new Date(this.articles[i].date);
+        }
         this.items = this.articles;
       }else{
         console.log("Erreur indéfinie (peut être n'êtes vous pas connecté a internet)");

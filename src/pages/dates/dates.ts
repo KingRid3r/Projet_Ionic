@@ -42,6 +42,9 @@ export class DatesPage {
         }else if(data.dates){
           console.log(data.dates);
           this.dates = data.dates;
+          for(var i in this.dates){
+            this.dates[i].gdate = new Date(this.dates[i].date);
+          }
         }else{
           console.log("Erreur indéfinie (peut être n'êtes vous pas connecté a internet)");
           let toast = this.toastCtrl.create({
@@ -60,13 +63,14 @@ export class DatesPage {
       console.log(this.classe);
     }
   }
-  addCalendar(){
+  addCalendar(title, notes, date){
     this.calendar.createCalendar('DateImportantes').then(
       (msg) => { console.log(msg); },
       (err) => { console.log(err); }
     );
-
     this.calendar.hasReadWritePermission();
+    this.calendar.createEvent(title, "Ecole petit Prince", notes, date, date);
+
   }
 
   ionViewDidLoad() {

@@ -41,6 +41,9 @@ export class GaleriesPage {
         }else if(data.galeries){
           console.log(data.galeries);
           this.galeries = data.galeries;
+          for(var i in this.galeries){
+            this.galeries[i].gdate = new Date(this.galeries[i].date);
+          }
         }else{
           console.log("Erreur indéfinie (peut être n'êtes vous pas connecté a internet)");
           let toast = this.toastCtrl.create({
@@ -80,6 +83,9 @@ export class GaleriesPage {
       }else if(data.galeries){
         console.log(data.galeries);
         this.galeries = data.galeries;
+        for(var i in this.galeries){
+          this.galeries[i].gdate = new Date(this.galeries[i].date);
+        }
       }else{
         console.log("Erreur indéfinie (peut être n'êtes vous pas connecté a internet)");
         let toast = this.toastCtrl.create({

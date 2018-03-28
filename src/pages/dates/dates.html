@@ -21,11 +21,11 @@
       <ion-card-header>
           <h2>{{dat.titre}}</h2>
           <ion-buttons end classe="plusbut">
-            <button classe="plusbut" ion-button icon-only (click)="addCalendar()">
+            <button classe="plusbut" ion-button icon-only (click)="addCalendar(dat.titre,dat.texte,dat.gdate)">
               <ion-icon name="add-circle"></ion-icon>
             </button>
           </ion-buttons>
-          <h4>{{dat.date}}</h4>
+          <h4>{{dat.gdate.toLocaleString('fr-FR', { timeZone: 'UTC' })}}</h4>
           <p>{{dat.texte}}</p>
       </ion-card-header>
       <ion-card-content>

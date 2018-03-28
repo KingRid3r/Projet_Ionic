@@ -21,7 +21,7 @@
   <div *ngFor="let class of galeries">
     <div *ngIf="class.classe == 0 || class.classe == classe">
       <h4>{{class.titre}}</h4>
-      <h6>{{class.date}}</h6>
+      <h6>{{class.gdate.toLocaleString('fr-FR', { timeZone: 'UTC' })}}</h6>
       <p>{{class.texte}} </p>
       <ion-slides classe="image-slider" loop="true" slidesPerView="2">
         <ion-slide *ngFor="let gal of class.photos">

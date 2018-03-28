@@ -35,7 +35,7 @@
             <h2 *ngIf="art.important == true" item-left>{{art.titre}}</h2>
             <h2 *ngIf="art.important == false">{{art.titre}}</h2>
           </ion-item>
-          <h4>{{art.categorie}} - {{art.date}}</h4>
+          <h4>{{art.categorie}} - {{art.gdate.toLocaleString('fr-FR', { timeZone: 'UTC' })}}</h4>
         </ion-card-header>
         <ion-card-content>
           <div *ngFor="let photo of art.photos">

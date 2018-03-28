@@ -55,6 +55,9 @@ export class HomePage {
 
             }else if(data.articles){
               this.articles = data.articles;
+              for(var i in this.articles){
+                this.articles[i].gdate = new Date(this.articles[i].date);
+              }
               this.favorites = new Array();
               this.storage.get('Fav').then((val) => {
                 if(val){
@@ -209,6 +212,9 @@ export class HomePage {
 
         }else if(data.articles){
           this.articles = data.articles;
+          for(var i in this.articles){
+            this.articles[i].gdate = new Date(this.articles[i].date);
+          }
           this.favorites = new Array();
           this.storage.get('Fav').then((val) => {
             if(val){
@@ -250,7 +256,6 @@ export class HomePage {
         this.Fav[idArt] = false;
         console.log(this.Fav);
         this.storage.set('Fav', JSON.stringify(this.Fav));
-        location.reload();
       }
     });
 
