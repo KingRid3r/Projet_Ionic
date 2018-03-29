@@ -12,12 +12,13 @@ import { DatesPage } from '../pages/dates/dates';
 import { InfosPage } from '../pages/infos/infos';
 import { GaleriesPage } from '../pages/galeries/galeries';
 import { ConnectionPage } from '../pages/connection/connection';
+import { TutorialPage } from '../pages/tuto/tuto';
 import { connexionVar } from '../providers/connexionVar';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Calendar } from '@ionic-native/calendar';
-
+import { Contacts } from '@ionic-native/contacts';
 @NgModule({
   declarations: [
     MyApp,
@@ -26,7 +27,8 @@ import { Calendar } from '@ionic-native/calendar';
     DatesPage,
     InfosPage,
     GaleriesPage,
-    ConnectionPage
+    ConnectionPage,
+    TutorialPage
   ],
   imports: [
     BrowserModule,
@@ -43,13 +45,15 @@ import { Calendar } from '@ionic-native/calendar';
     DatesPage,
     InfosPage,
     GaleriesPage,
-    ConnectionPage
+    ConnectionPage,
+    TutorialPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     connexionVar,
     Calendar,
+    Contacts,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

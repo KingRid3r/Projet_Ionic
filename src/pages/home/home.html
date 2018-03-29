@@ -14,7 +14,7 @@
   </ion-refresher>
   <div *ngIf="ConnexionVar.getConnectionVar().connected == false">
     <h3>Bienvenue dans l'application petit prince</h3>
-
+    <img class="center" src='assets/imgs/home.jpg' alt="Home"/>
     <p>
       Merci de bien vouloir vous connecter afin de pouvoir utilisé l'application
     </p>
@@ -24,7 +24,9 @@
 
   <div *ngIf="ConnexionVar.getConnectionVar().connected == true">
     <h3>Bonjour,<br/></h3>
-     <p>vous êtes connecté sur le compte : {{ ConnexionVar.getConnectionVar().identifiant }}</p>
+    <h3>Bienvenue dans l'application petit prince</h3>
+    <img class="center" src='assets/imgs/home.jpg' alt="Home"/>
+     <p>vous êtes actuelement connecté sur le compte : {{ ConnexionVar.getConnectionVar().identifiant }}</p>
     <button class="button deco" ion-button (click)=deconnection() >Deconnexion</button>
     <h3>Favoris <ion-icon name="heart"></ion-icon> :</h3>
     <ion-card *ngFor="let art of favorites">
@@ -35,7 +37,7 @@
             <h2 *ngIf="art.important == true" item-left>{{art.titre}}</h2>
             <h2 *ngIf="art.important == false">{{art.titre}}</h2>
           </ion-item>
-          <h4>{{art.categorie}} - {{art.gdate.toLocaleString('fr-FR', { timeZone: 'UTC' })}}</h4>
+          <h4 *ngIf="art.gdate != null">{{art.categorie}} - {{art.gdate.toLocaleString('fr-FR', { timeZone: 'UTC' })}}</h4>
         </ion-card-header>
         <ion-card-content>
           <div *ngFor="let photo of art.photos">

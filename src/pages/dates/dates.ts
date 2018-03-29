@@ -70,6 +70,15 @@ export class DatesPage {
     );
     this.calendar.hasReadWritePermission();
     this.calendar.createEvent(title, "Ecole petit Prince", notes, date, date);
+    let toast = this.toastCtrl.create({
+      message: "Date ajouté dans votre agenda",
+      duration: 3000,
+      position: 'bottom'
+    });
+    toast.onDidDismiss(() => {
+      console.log('Dismissed toast');
+    });
+    toast.present();
 
   }
 

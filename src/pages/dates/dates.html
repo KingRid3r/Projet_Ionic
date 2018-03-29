@@ -17,19 +17,26 @@
 
 
 <ion-content padding>
-    <ion-card *ngFor="let dat of dates">
-      <ion-card-header>
-          <h2>{{dat.titre}}</h2>
-          <ion-buttons end classe="plusbut">
-            <button classe="plusbut" ion-button icon-only (click)="addCalendar(dat.titre,dat.texte,dat.gdate)">
-              <ion-icon name="add-circle"></ion-icon>
-            </button>
-          </ion-buttons>
-          <h4>{{dat.gdate.toLocaleString('fr-FR', { timeZone: 'UTC' })}}</h4>
-          <p>{{dat.texte}}</p>
-      </ion-card-header>
-      <ion-card-content>
-        <!-- Add card content here! -->
-      </ion-card-content>
-    </ion-card>
+    <div *ngIf="ConnexionVar.getConnectionVar().connected == true">
+      <ion-card *ngFor="let dat of dates">
+        <ion-card-header>
+            <ion-item>
+              <h2>{{dat.titre}}</h2>
+              <ion-buttons item-right classe="plusbut">
+                <button item-right classe="plusbut" ion-button icon-only (click)="addCalendar(dat.titre,dat.texte,dat.gdate)">
+                  <ion-icon name="add-circle"></ion-icon>
+                </button>
+              </ion-buttons>
+            </ion-item>
+            <h4>{{dat.gdate.toLocaleString('fr-FR', { timeZone: 'UTC' })}}</h4>
+            <p>{{dat.texte}}</p>
+        </ion-card-header>
+        <ion-card-content>
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <div *ngIf="ConnexionVar.getConnectionVar().connected == false">
+        <img class="center" src='assets/imgs/not_co.png' alt="NOT_CONNECTED"/>
+        <h1>Veuiller vous connecter pour Accéder a cette page</h1>
+    </div>
 </ion-content>

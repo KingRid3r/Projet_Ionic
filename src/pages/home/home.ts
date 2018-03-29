@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ViewController } from 'ionic-angular';
 import { ConnectionPage } from '../connection/connection';
+import { TutorialPage } from '../tuto/tuto';
 import { ModalController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { connexionVar } from '../../providers/connexionVar';
@@ -20,6 +21,14 @@ export class HomePage {
   connected = false;
   Fav: any;
   constructor(private toastCtrl: ToastController, public ConnexionVar: connexionVar, public viewCtrl: ViewController, public navCtrl: NavController, public modalCtrl: ModalController, private storage: Storage, public http: Http) {
+    storage.get('tuto').then((val) => {
+      console.log('Votre mdp est ', val);
+      if(val == null  || val == false){
+        let modal = this.modalCtrl.create(TutorialPage);
+        modal.present();
+      }
+    });
+
     storage.get('identifiant').then((val) => {
       console.log('Votre identifiant est ', val);
       if(val != null){

@@ -17,20 +17,24 @@
 
 
 <ion-content padding>
+  <div *ngIf="ConnexionVar.getConnectionVar().connected == true">
+    <div *ngFor="let class of galeries">
+      <div *ngIf="class.classe == 0 || class.classe == classe">
+        <h5>{{class.titre}}</h5>
+        <h6>{{class.gdate.toLocaleString('fr-FR', { timeZone: 'UTC' })}}</h6>
+        <p>{{class.texte}} </p>
+        <ion-slides classe="image-slider" loop="true" slidesPerView="2">
+          <ion-slide *ngFor="let gal of class.photos">
 
-  <div *ngFor="let class of galeries">
-    <div *ngIf="class.classe == 0 || class.classe == classe">
-      <h4>{{class.titre}}</h4>
-      <h6>{{class.gdate.toLocaleString('fr-FR', { timeZone: 'UTC' })}}</h6>
-      <p>{{class.texte}} </p>
-      <ion-slides classe="image-slider" loop="true" slidesPerView="2">
-        <ion-slide *ngFor="let gal of class.photos">
-
-          <img src="http://www.sebastien-thon.fr/cours/M4104Cip/projet/images/{{gal.image}}" class="thumb-img" imageViewer/>
-          <p class="image-text">{{gal.legende}}</p>
-        </ion-slide>
-      </ion-slides>
+            <img src="http://www.sebastien-thon.fr/cours/M4104Cip/projet/images/{{gal.image}}" class="thumb-img" imageViewer/>
+            <p class="image-text">{{gal.legende}}</p>
+          </ion-slide>
+        </ion-slides>
+      </div>
     </div>
   </div>
-
+  <div *ngIf="ConnexionVar.getConnectionVar().connected == false">
+      <img class="center" src='assets/imgs/not_co.png' alt="NOT_CONNECTED"/>
+      <h1>Veuiller vous connecter pour Accéder a cette page</h1>
+  </div>
 </ion-content>
